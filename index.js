@@ -2,7 +2,11 @@ const express = require('express');
 const redis = require('redis');
 
 const app = express();
-const client = redis.createClient();
+const client = redis.createClient({
+    // the service name in the docker-compose file (same network, docker will resolve)
+    host: 'redis-server'
+    // port: 6379
+});
 client.set('visits', 0);
 
 app.get('/', (req, res) => {
@@ -12,7 +16,7 @@ app.get('/', (req, res) => {
     });
 });
 
-const port = 8081;
+const port = 8080;
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
