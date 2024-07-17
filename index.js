@@ -18,7 +18,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/fail', (req, res) => {
-    process.exit(0);
+    process.exit(0); // successful exit
+    // process.exit(1) exits with a failure code
 });
 
 const port = 8080;
